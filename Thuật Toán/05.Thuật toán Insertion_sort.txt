@@ -1,0 +1,47 @@
+1. Nguyên Lý
+
+Bắt đầu với dãy số gồm một phần tử đầu tiên, coi nó là dãy con đã sắp xếp.
+
+Duyệt qua từng phần tử trong dãy số, bắt đầu từ phần tử thứ hai.
+
+So sánh phần tử hiện tại với các phần tử trong dãy con đã sắp xếp trước đó, từ phải qua trái.
+
+Chèn phần tử hiện tại vào vị trí đúng trong dãy con đã sắp xếp. Để chèn phần tử, ta dịch chuyển các phần tử lớn hơn nó sang phải một vị trí.
+
+Lặp lại quá trình trên cho đến khi đã duyệt qua toàn bộ dãy số.
+	
+	THUẬT TOÁN SẮP XẾP CHÈN.
+	BEST CASE = O(n)
+	WORST CASE = O(n^2)
+
+#include <stdio.h>
+//chú ý: thuật toán này duyệt từ 1 đến n, khác so với interchange,bubble
+// là duyệt từ 0 đến n-1. vì gán thằng đầu tiên là arr[1];
+//vòng lặp for lồng thêm while dô
+int insertion_sort(int arr[], int n){
+    int i,j,key;
+    for(i=1;i<n;i++){
+        key = arr[i];
+        j=i-1;
+        
+        while(j>=0 && arr[j]>key){
+            arr[j+1]=arr[j];
+            j = j-1;
+            
+        }
+        arr[j+1]=key;
+    }
+}
+        
+ // gán giá trị cho các phần tử đầu tiên và dịch array sang phải 1 lỗ để điền số chèn dô.
+    
+int main() {
+    int arr[]={9,8,7,6,5,4,3,2,1};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    
+    insertion_sort(arr,n);
+    for(int i=0;i<n;i++){
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}

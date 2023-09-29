@@ -1,0 +1,128 @@
+#include <stdio.h>
+
+void swap(int *a, int *b){
+    int temp;
+    temp=*a;
+    *a=*b;
+    *b=temp;
+}
+
+int partition(int arr[], int low, int high){
+    int pivot = arr[high];
+    int i = (low-1);
+    for(int j=low;j<=high-1;j++){
+        if(arr[j]<=pivot){
+            i++;
+            swap(&arr[i],&arr[j]);
+        }
+    }
+    swap(&arr[i+1],&arr[high]);
+    return (i+1);
+}
+
+void quickSort(int arr[], int low, int high){
+    if(low<high){
+        int pivotIndex = partition(arr,low,high);
+        
+        quickSort(arr,low,pivotIndex-1);
+        quickSort(arr,pivotIndex+1,high);
+    }
+}
+
+void insertionSort(int arr[], int n){
+    int i,j,key;
+    for(i=0;i<n;i++){
+        key = arr[i];
+        j=i-1;
+        
+        while(j>=0 && arr[j]>key){
+            arr[j+1]=arr[j];
+            j--;
+        }
+        arr[j+1]=key;
+    }
+}
+
+void selectionSort(int* arr, int n){
+    int i,j,minIndex;
+    for(i=0;i<n-1;i++){
+        minIndex=i;
+        for(j=i+1;j<n;j++){
+            if(arr[minIndex]>arr[j]){
+                minIndex=j;
+            }
+        }
+        swap(&arr[i],&arr[minIndex]);
+    }
+}
+
+void bubbleSort(int* arr, int n){
+    int i,j;
+    for(i=0;i<n-1;i++){
+        for(j=0;j<n-i-1;j++){
+            if(arr[j]>arr[j+1]){
+                swap(&arr[j],&arr[j+1]);
+            }
+        }
+    }
+}
+
+void interchangeSort(int* arr, int n){
+   int i,j;
+   for(i=0;i<n-1;i++){
+       for(j=i+1;j<n;j++){
+           if(arr[i]>arr[j]){
+               swap(&arr[i],&arr[j]);
+           }
+       }
+   }
+}
+
+int binaryS(int arr[], int left, int right,int key){
+    if(left>right)
+        return -1;
+    
+    int mid = left+(right-left)/2;
+    if(arr[mid]==key)
+        return 1;
+        
+    if(arr[mid]>key)
+        return binaryS(arr,left,right-1,key);
+    else
+        return binaryS(arr,left+1,right,key);
+}
+
+int linearS(int arr[],int n, int key){
+    for(int i=0;i<n;i++){
+        if(key==arr[i]){
+            return 1;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int arr[]={1,2,3,4,5,6,7,8,9,11,22};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    
+    //quickSort(arr,0,n-1);
+    //insertionSort(arr,n);
+    //selectionSort(arr,n);
+    //bubbleSort(arr,n);
+    //interchangeSort(arr,n);
+    
+    int key = 22;
+    int result = linearS(arr,n,key);
+    if(result==1)
+        printf("Tim thay");
+    else
+        printf("Khong tim thay");
+    
+    // int result = binaryS(arr,0,n-1,key);
+    // printf("%d",result);
+    
+    // for(int i=0;i<n;i++){
+    //     printf("%d ",arr[i]);
+    // }
+    return 0;
+}

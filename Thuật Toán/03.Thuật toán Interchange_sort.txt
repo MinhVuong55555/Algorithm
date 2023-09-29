@@ -1,0 +1,42 @@
+// Online C compiler to run C program online
+
+	SẮP XẾP TRAO ĐỔI 
+	BEST CASE = O(n)
+	WORST CASE = O(n^2)
+
+#include <stdio.h>
+
+void interchange_sort(int arr[], int n){
+    for(int i=0;i<n-1;++i){
+        for(int j=i+1;j<n;++j){
+            if(arr[i]>arr[j]){
+                int temp = arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+            
+        }
+    }
+}
+
+int main() {
+    // Write C code here
+    int A[]={1,3,4,5,8,2,9,10,3,9};
+    int n = 10;
+    printf("Day so ban dau la\n");
+    for(int i=0;i<n;++i){
+        printf("%d ", A[i]);
+    }
+    
+    interchange_sort(A,n);
+    
+    printf("\nDay so sau khi sort la\n");
+    for(int i=0;i<n;++i){
+        printf("%d ",A[i]);
+    }
+    
+    
+    printf("\nHello world");
+
+    return 0;
+}
